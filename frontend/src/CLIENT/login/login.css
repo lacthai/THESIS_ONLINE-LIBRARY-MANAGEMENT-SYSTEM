@@ -1,0 +1,46 @@
+
+
+/* Login FAIL or SUCCESS PROMPT CSS */
+#p-success {
+  color: green;
+}
+#p-fail {
+  color: red;
+}
+
+
+
+.container_form {
+  background-image: url("/bg_login.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.login-form_title {
+  font-family: 'Pacifico', cursive;
+  font-family: 'Titan One', cursive;
+}
+
+
+.login-form_input {
+  outline: none;
+padding: 10px 0;
+display: block;
+width: 100%;
+color: #111727;
+font-size: 14px;
+border-bottom: 2.5px solid #111727;
+background-color: transparent;
+font-size: 1rem;
+font-weight: 600;
+}
+
+
+.login-form_input::placeholder {
+  color: #111727;
+}

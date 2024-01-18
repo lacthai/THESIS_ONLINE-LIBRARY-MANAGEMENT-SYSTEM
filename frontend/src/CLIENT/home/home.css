@@ -1,0 +1,119 @@
+/* HOME PAGE /LANDING PAGE CSS */
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+.home-recommended-books-div {
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* flex-wrap: wrap; */
+  align-items: center;
+  margin: 1rem;
+  padding: 1rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.5rem;
+}
+
+.home-recommended-books-div img {
+  max-width: 10rem;
+  margin-right: 1.5rem;
+}
+
+.home-recommended-books-div h2 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.home-recommended-books-div h3 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.home-recommended-books-div p {
+  margin: 1rem 0 0 0;
+}
+
+@media (max-width: 768px) {
+  .home-recommended-books-div {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .home-recommended-books-div img {
+    max-width: 100%;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+
+.layout_banner {
+  display: flex !important;
+  justify-content: space-around;
+  height: 400px;
+  width: 100%;
+}
+
+
+
+
+.banner_desc {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 40%;
+  margin: 0 35px;
+}
+
+.banner_desc h1 {
+  font-family: 'Anton', sans-serif;
+  font-size: 2.2rem;
+  text-transform: uppercase;
+}
+
+
+.banner_img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 60%;
+}
+
+.banner_img img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 25px;
+}
+
+.slick-dots {
+  width: 20% !important;
+  left: 50%;
+  bottom: -120px !important;
+  transform: translateX(-50%);
+  background-color: gainsboro;
+  height: 35px;
+  border-radius: 25px;
+  /* display: flex !important;
+  justify-content: center !important;
+  align-items: center !important; */
+}
+
+.slick-dots li button:before {
+  font-size: 1rem !important;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #ffffff !important;
+}
+
+.slick-prev, .slick-next {
+  display: none !important;
+}
+
+
+.detail_admin-home {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.detail_show-admin {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
