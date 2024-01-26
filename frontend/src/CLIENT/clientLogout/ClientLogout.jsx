@@ -20,25 +20,27 @@ const ClientLogout = () => {
       await axios.post(logout_Api_url)
 
       navigate('/', { replace: true })
+        window.location.reload();
+     
     } catch (error) {
       console.log(error.response)
     }
   }
 
   return (
-    <div className='container h-[100vh]'>
+    <div className='container h-[100vh] flex flex-col justify-center items-center'>
       <div className='row'>
         <div className='col text-center'>
           <img
-            className='img-fluid'
+            className='img-fluid '
             src='/logout.png'
             alt=''
             style={{ width: '500px' }}
           />
 
-          <h3 className='h3'>are you sure, you want to Logout ? </h3>
+          <h3 className='h3 dark:text-[#303030] text-[#e0e0e0] mt-3'>Are you sure, you want to Logout ? </h3>
 
-          <button className='btn btn-success mx-5 my-3' onClick={handleLogout}>
+          <button className='btn btn-success mx-5 my-3 bg-[#6a5af9] dark:bg-[#4cceac] border-none' onClick={handleLogout}>
             Yes
           </button>
 

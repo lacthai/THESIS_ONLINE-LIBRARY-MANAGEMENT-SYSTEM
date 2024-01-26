@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{html,js,jsx}"],
   important: true,
   darkMode: 'class',
+  extend: {
+    display: ["group-hover"],
+  },
   theme: {
     extend: {},
     fontWeight: {

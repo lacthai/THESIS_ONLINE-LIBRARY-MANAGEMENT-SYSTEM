@@ -27,9 +27,9 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
       onClick={() => setSelected(title)}
       icon={icon}
       className="dark:text-[#303030] text-[#F8F8F8] dark:hover:backdrop-blur-md dark:hover:bg-white/70 
-      mr-[10%] rounded-xl hover:backdrop-blur-xl hover:bg-white/30"
+      mr-1 rounded-xl hover:backdrop-blur-xl hover:bg-white/30"
     >
-      <Typography className="text-[0.8rem] dark:text-[#303030] text-[#F8F8F8]">{title}</Typography>
+      <Typography className="text-[0.9rem] dark:text-[#303030] text-[#F8F8F8]">{title}</Typography>
       <Link to={to} />
     </MenuItem>
   );
@@ -40,17 +40,6 @@ const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
   return (
-    // <nav className='sidebar'>
-    //   <ul className='nav flex-column'>
-    //     {sidebarData.map((panelItem) => (
-    //       <li className='nav-item sidebar-nav-item' key={panelItem.id}>
-    //         <Link to={panelItem.url} className='nav-link sidebar-nav-link'>
-    //           {panelItem.title}
-    //         </Link>
-    //       </li>
-    //     ))}
-    //   </ul>
-    // </nav>
     <Box
     sx={{
         "& .pro-sidebar-inner": {
@@ -70,8 +59,8 @@ const Sidebar = () => {
       },
   }}
   >
-    <ProSidebar collapsed={isCollapsed} className="dark:bg-[#E0E0E0] bg-[#1f2a40] ">
-      <Menu iconShape="square" className="dark:bg-[#E0E0E0] bg-[#1f2a40]  ">
+    <ProSidebar collapsed={isCollapsed} className="dark:bg-[#E0E0E0] bg-[#1f2a40]">
+      <Menu iconShape="square" className="dark:bg-[#E0E0E0] bg-[#1f2a40]">
         {/* LOGO AND MENU ICON */}
         <MenuItem
           onClick={() => setIsCollapsed(!isCollapsed)}

@@ -5,11 +5,9 @@ import axios from 'axios'
 import { backend_server } from '../../main'
 import ClientDashboard from './ClientDashboard'
 import ClientDetails from './ClientDetails'
-import ClientLogout from '../clientLogout/ClientLogout'
 import './clientprofile.css'
 
 const ClientProfile = () => {
-  const userLoginState = useLoginState()
 
   const getSingleUser_API_URL = `${backend_server}/api/v1/users/`
 
@@ -63,11 +61,6 @@ const ClientProfile = () => {
 
   return (
     <div className='container-fluid'>
-      {/* <Row className='my-3'>
-        <h1 className='h1 text-center'>
-          Welcome, {userLoginState.userLogState}
-        </h1>
-      </Row> */}
 
       <Row className='row client-sidebar'>
         {/* Left Bar */}
@@ -77,24 +70,17 @@ const ClientProfile = () => {
             className='btn btn-primary my-1 mx-1'
             style={{ width: '100%' }}
           >
-            Dashboard
+            History
           </button>
 
           <button
             onClick={handleOnclickProfile}
-            className='btn btn-primary my-1 mx-1'
+            className='btn btn-primary my-1 mx-1 '
             style={{ width: '100%' }}
           >
             My Details
           </button>
 
-          <button
-            className='btn btn-primary my-1 mx-1'
-            onClick={handleOnclickLogout}
-            style={{ width: '100%' }}
-          >
-            Logout
-          </button>
         </Col>
 
         {/* Right Bar Page */}
@@ -113,12 +99,6 @@ const ClientProfile = () => {
           </Col>
         )}
 
-        {/* Logout */}
-        {showLogout && (
-          <Col>
-            <ClientLogout></ClientLogout>
-          </Col>
-        )}
       </Row>
     </div>
   )

@@ -38,8 +38,7 @@ const ClientDashboard = ({ userBookData }) => {
                 <th scope='col'>Issue Date</th>
                 <th scope='col'> Return Due</th>
                 <th scope='col'> Returned Status</th>
-                <th scope='col'>Extra Charge</th>
-                {/* <th scope='col'>Update</th> */}
+
               </tr>
             </thead>
             <tbody>
@@ -50,7 +49,6 @@ const ClientDashboard = ({ userBookData }) => {
                     _id,
                     issueStatus,
                     isReturned,
-                    extraCharge,
                     issueDate,
                     returnDate,
                   } = users
@@ -71,7 +69,6 @@ const ClientDashboard = ({ userBookData }) => {
                       <td>{bookissuedate}</td>
                       <td>{updatedReturnDate}</td>
                       <td>{returnOrNot}</td>
-                      <td>Nrs.{extraCharge} /-</td>
                       {issueStatus === 'PENDING' || issueStatus === 'READY' ? (
                         <td>
                           <button

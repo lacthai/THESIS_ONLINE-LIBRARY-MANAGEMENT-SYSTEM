@@ -99,7 +99,7 @@ const ManageBooks = () => {
                     <td className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>{availableText}</td>
                     <td className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>
                       <Link to={`/admin/managebooks/${_id}`}>
-                        <button className='btn mx-1 edit-books-btn'>
+                        <button className='btn mx-1 edit-books-btn dark:text-[#303030] text-[#e0e0e0] border-none bg-[#6a5af9] dark:bg-[#4cceac]'>
                           View Details
                         </button>
                       </Link>

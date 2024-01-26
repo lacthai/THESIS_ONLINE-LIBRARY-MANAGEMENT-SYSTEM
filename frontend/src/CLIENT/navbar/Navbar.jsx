@@ -49,53 +49,6 @@ const Navbar = () => {
 
   return (
     <>
-    {/* <nav className='navbar navbar-expand-xl '>
-      <div className='container-fluid'>
-        <Link to='/' className='a'>
-          <img
-            src={navbarImage}
-            alt='Logo'
-            width={'50'}
-            className='d-sm-inline-block d-none'
-          />
-          <h4 className='h4 d-inline' id='navbar-title-text'>
-            {navbarTitle}
-          </h4>
-        </Link>
-
-        <button
-          id='navbar-mobileview-btn'
-          className='navbar-toggler'
-          type='button'
-          data-bs-toggle='collapse'
-          data-bs-target='#navbarSupportedContent'
-          aria-controls='navbarSupportedContent'
-          aria-expanded='false'
-          aria-label='Toggle navigation'
-        >
-          <span className='navbar-toggler-icon' />
-        </button>
-
-        <div className='collapse navbar-collapse' id='navbarSupportedContent'>
-          <ul className='navbar-nav mb-2 mb-lg-0 justify-content-end fs-5'>
-            {navbarLinks.map((link, index) => {
-              const { name, url } = link
-              return (
-                <li className='nav-item' key={index}>
-                  <Link to={url} className='nav-link'>
-                    {name}
-                  </Link>
-                </li>
-              )
-            })}
-         
-            {userLoginState.userLogState ? <UserLogin /> : <UserSignin />}
-          </ul>
-
-        
-        </div>
-      </div>
-    </nav> */}
     <Box className="flex justify-between bg-[#141b2d] dark:bg-[#f8fafb]  relative"  p={2} ref={ref}>
     <Link to='/' className='a flex justify-center items-center'>
           <img
@@ -118,9 +71,9 @@ const Navbar = () => {
           )}
         </IconButton>
         <IconButton>
-          <Link to="/notifications">
+          {userLoginState.userLogState ? <Link to="/notifications">
           <NotificationsOutlinedIcon className="dark:text-[#383838] text-[#E0E0E0]"/>
-          </Link>
+          </Link> : <></>}
         </IconButton>
         
           {userLoginState.userLogState ? <UserLogin /> : <UserSignin />}

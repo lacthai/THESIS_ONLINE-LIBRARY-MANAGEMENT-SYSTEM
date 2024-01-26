@@ -159,8 +159,8 @@ const EditBookForm = () => {
   };
 
   return (
-    <div className="container mt-2">
-      <h1 className="h1 text-center">Edit Book</h1>
+    <div className="container mt-2 h-[150vh]">
+      <h1 className="h1 text-center dark:text-[#303030] text-[#e0e0e0]">Edit Book</h1>
 
       <div className="row">
         <div className="col-md-4">
@@ -174,7 +174,7 @@ const EditBookForm = () => {
               type="file"
               accept="image/*"
               required
-              className="m-3"
+              className="m-3 dark:text-[#303030] text-[#e0e0e0]"
               onChange={handleImageChange}
             />
             {selectedImage && (
@@ -185,7 +185,7 @@ const EditBookForm = () => {
                 style={{ margin: "20px 0" }}
               />
             )}
-            <button type="submit" className="btn btn-success">
+            <button type="submit" className="btn btn-success border-none bg-[#6a5af9] dark:bg-[#4cceac]">
               Update Image
             </button>
           </form>
@@ -194,7 +194,7 @@ const EditBookForm = () => {
         <div className="col">
           <form className="form my-3" onSubmit={handleSubmit}>
             <Col className="d-flex align-items-center">
-              <label htmlFor="title" className="col-md-1 my-1 me-2">
+              <label htmlFor="title" className="col-md-1 my-1 me-2 dark:text-[#303030] text-[#e0e0e0]">
                 Title
               </label>
               <input
@@ -210,7 +210,7 @@ const EditBookForm = () => {
             </Col>
 
             <Col className="d-flex align-items-center">
-              <label htmlFor="category" className="col-md-1 my-1 me-2">
+              <label htmlFor="category" className="col-md-1 my-1 me-2 dark:text-[#303030] text-[#e0e0e0]">
                 Category
               </label>
               <input
@@ -225,7 +225,7 @@ const EditBookForm = () => {
             </Col>
 
             <Col className="d-flex align-items-center">
-              <label htmlFor="author" className="col-md-1 my-1 me-2">
+              <label htmlFor="author" className="col-md-1 my-1 me-2 dark:text-[#303030] text-[#e0e0e0]">
                 Author
               </label>
               <input
@@ -240,7 +240,7 @@ const EditBookForm = () => {
             </Col>
 
             <Col className="d-flex align-items-center">
-              <label htmlFor="available" className="my-1 me-2">
+              <label htmlFor="available" className="my-1 me-2 dark:text-[#303030] text-[#e0e0e0]">
                 Available
               </label>
               <input
@@ -253,7 +253,7 @@ const EditBookForm = () => {
                 }
               />
 
-              <label htmlFor="featured" className="my-1 me-2 ms-4">
+              <label htmlFor="featured" className="my-1 me-2 ms-4 dark:text-[#303030] text-[#e0e0e0]">
                 Featured
               </label>
 
@@ -269,7 +269,7 @@ const EditBookForm = () => {
             </Col>
 
             <Col className="d-flex align-items-center">
-              <label htmlFor="language" className="col-md-1 my-1 me-2">
+              <label htmlFor="language" className="col-md-1 my-1 me-2 dark:text-[#303030] text-[#e0e0e0]">
                 Language
               </label>
               <input
@@ -284,7 +284,7 @@ const EditBookForm = () => {
             </Col>
 
             <Col className="d-flex align-items-center">
-              <label htmlFor="description" className="col-md-1 my-1 me-2">
+              <label htmlFor="description" className="col-md-1 my-1 me-2 dark:text-[#303030] text-[#e0e0e0]">
                 Description
               </label>
               <textarea
@@ -313,7 +313,7 @@ const EditBookForm = () => {
 
               <button
                 type="submit"
-                className="btn btn-success mx-3"
+                className="btn btn-success mx-3 border-none bg-[#6a5af9] dark:bg-[#4cceac]"
                 onClick={handleUpdateButton}
               >
                 Update

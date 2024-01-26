@@ -4,7 +4,10 @@ import ChatBot from 'react-simple-chatbot';
 import { Link } from 'react-router-dom';
 import MarkUnreadChatAltIcon from '@mui/icons-material/MarkUnreadChatAlt';
 import { ThemeProvider } from 'styled-components';
+import { useLoginState } from '../../LoginState';
 const Review = (props) => {
+
+
 
   const [state, setState] = useState({
     name: '',
@@ -44,11 +47,8 @@ const Review = (props) => {
   );
 };
 
-const View = () => {
-    return (
-        <Link to="/books" className=' no-underline'>Explore the book library</Link>
-    )
-}
+
+
 
 Review.propTypes = {
   steps: PropTypes.object,
@@ -64,6 +64,34 @@ const Chat = () => {
   const handleToggleChat = () => {
     setIsOpen(!isOpen);
   };
+
+  const userLoginState = useLoginState()
+
+  const View = () => {
+    return (
+        <Link to="/books" className=' no-underline text-[#6a5af9] dark:text-[#4cceac]'>Explore the book library</Link>
+    )
+}
+
+const Document = () => {
+  return (
+    <Link to="/document" className=' no-underline text-[#6a5af9] dark:text-[#4cceac]'>Explore the documents library</Link>
+  )
+}
+
+//  const Signup = () => {
+//   return (
+//     <div>
+//       {userLoginState.userLoginState ? (
+//       <>
+
+//       </>) : (
+//       <>
+//         <p></p>
+//       </>)}
+//     </div>
+//   )
+//  }
 
   const theme = {
     background: '#f5f8fb',
@@ -107,105 +135,131 @@ const Chat = () => {
             {
               id: 'question',
               options: [
-                { label: 'ViewLibrary', trigger: 'view' },
-                { label: 'consulting and problem solving', trigger: 'problem' },
+                {value:1, label: 'ViewLibrary', trigger: 'viewlibrary' },
+                {value:2, label: 'Document', trigger: 'viewdocument' },
+                {value:3, label: 'consulting and problem solving', trigger: 'problem' },
               ],
             },
             {
-              id: 'view',
-              component: <View />,
-            //   trigger: 'view-message',
+              id: 'backquestion',
+              options: [
+                {value:2, label: 'Document', trigger: 'viewdocument' },
+                {value:3, label: 'consulting and problem solving', trigger: 'problem' },
+              ],
             },
-            // {
-            //   id: 'view-message',
-            //   message: 'Are you need consulting and problem solving ?',
-            //   trigger: 'problem',
-            // },
+            {
+              id: 'question1',
+              options: [
+                {value:1, label: 'ViewLibrary', trigger: 'viewlibrary' },
+                {value:3, label: 'consulting and problem solving', trigger: 'problem' },
+              ],
+            },
+            {
+              id: 'viewlibrary',
+              component: <View />,
+              trigger: 'backquestion',
+            },
+            {
+              id: 'viewdocument',
+              component: <Document />,
+              trigger: 'question1',
+            },
             {
               id: 'problem',
               options: [
-                { value: 'male', label: 'Sign up issue', trigger: '5' },
-                { value: 'female', label: '', trigger: '5' },
-                { value: 'female', label: 'Female', trigger: '5' },
+                { value: 5, label: `${userLoginState.userLogState ? "Forgot password issue" : "Sig up issue"}`, trigger: '6' },
+                // { value: 5, label:  'Sign up issue', trigger: '6' },
+                // { value: 6, label: 'forgot password issue', trigger: '7' },
+                { value: 7, label: 'book issuse', trigger: '8' },
               ],
             },
             {
-              id: '5',
-              message: 'How old are you?',
-              trigger: 'age',
-            },
-            {
-              id: 'age',
-              user: true,
-              trigger: '7',
-              validator: (value) => {
-                if (isNaN(value)) {
-                  return 'value must be a number';
-                } else if (value < 0) {
-                  return 'value must be positive';
-                } else if (value > 120) {
-                  return `${value}? Come on!`;
-                }
-    
-                return true;
-              },
+              id: '6',
+              message: 'hello',
+              end: true,
             },
             {
               id: '7',
-              message: 'Great! Check out your summary',
-              trigger: 'review',
-            },
-            {
-              id: 'review',
-              component: <Review />,
-              asMessage: true,
-              trigger: 'update',
-            },
-            {
-              id: 'update',
-              message: 'Would you like to update some field?',
-              trigger: 'update-question',
-            },
-            {
-              id: 'update-question',
-              options: [
-                { value: 'yes', label: 'Yes', trigger: 'update-yes' },
-                { value: 'no', label: 'No', trigger: 'end-message' },
-              ],
-            },
-            {
-              id: 'update-yes',
-              message: 'What field would you like to update?',
-              trigger: 'update-fields',
-            },
-            {
-              id: 'update-fields',
-              options: [
-                { value: 'name', label: 'Name', trigger: 'update-name' },
-                { value: 'gender', label: 'Gender', trigger: 'update-gender' },
-                { value: 'age', label: 'Age', trigger: 'update-age' },
-              ],
-            },
-            {
-              id: 'update-name',
-              update: 'name',
-              trigger: '7',
-            },
-            {
-              id: 'update-gender',
-              update: 'gender',
-              trigger: '7',
-            },
-            {
-              id: 'update-age',
-              update: 'age',
-              trigger: '7',
-            },
-            {
-              id: 'end-message',
-              message: 'Thanks! Your data was submitted successfully!',
+              message: 'How old are you?',
               end: true,
             },
+            {
+              id: '8',
+              message: 'How old are you?',
+              end: true,
+            },
+            // {
+            //   id: 'age',
+            //   user: true,
+            //   trigger: '7',
+            //   validator: (value) => {
+            //     if (isNaN(value)) {
+            //       return 'value must be a number';
+            //     } else if (value < 0) {
+            //       return 'value must be positive';
+            //     } else if (value > 120) {
+            //       return `${value}? Come on!`;
+            //     }
+    
+            //     return true;
+            //   },
+            // },
+            // {
+            //   id: '7',
+            //   message: 'Great! Check out your summary',
+            //   trigger: 'review',
+            // },
+            // {
+            //   id: 'review',
+            //   component: <Review />,
+            //   asMessage: true,
+            //   trigger: 'update',
+            // },
+            // {
+            //   id: 'update',
+            //   message: 'Would you like to update some field?',
+            //   trigger: 'update-question',
+            // },
+            // {
+            //   id: 'update-question',
+            //   options: [
+            //     { value: 'yes', label: 'Yes', trigger: 'update-yes' },
+            //     { value: 'no', label: 'No', trigger: 'end-message' },
+            //   ],
+            // },
+            // {
+            //   id: 'update-yes',
+            //   message: 'What field would you like to update?',
+            //   trigger: 'update-fields',
+            // },
+            // {
+            //   id: 'update-fields',
+            //   options: [
+            //     { value: 'name', label: 'Name', trigger: 'update-name' },
+            //     { value: 'gender', label: 'Gender', trigger: 'update-gender' },
+            //     { value: 'age', label: 'Age', trigger: 'update-age' },
+            //   ],
+            // },
+            // {
+            //   id: 'update-name',
+            //   update: 'name',
+            //   trigger: '7',
+            // },
+            // {
+            //   id: 'update-gender',
+            //   update: 'gender',
+            //   trigger: '7',
+            // },
+            // {
+            //   id: 'update-age',
+            //   update: 'age',
+            //   trigger: '7',
+            // },
+            // {
+            //   id: 'end-message',
+            //   message: 'Thanks! Your data was submitted successfully!',
+            //   end: true,
+            // },
           ]}
         />
 </ThemeProvider>

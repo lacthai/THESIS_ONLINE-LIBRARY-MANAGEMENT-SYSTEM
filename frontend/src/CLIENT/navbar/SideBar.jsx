@@ -6,24 +6,16 @@ import "react-pro-sidebar/dist/css/styles.css";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import TopicIcon from "@mui/icons-material/Topic";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import PostAddIcon from "@mui/icons-material/PostAdd";
-import WorkHistoryIcon from "@mui/icons-material/WorkHistory";
+
 import InfoIcon from "@mui/icons-material/Info";
-import MessageIcon from "@mui/icons-material/Message";
-import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
-import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
+
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import PersonSearchIcon from '@mui/icons-material/PersonSearch';
-import DashboardIcon from '@mui/icons-material/Dashboard';
+
 import { backend_server } from '../../main'
-import useFetch from "../../useFetch";
+
 import axios from "axios";
 import { useLoginState } from '../../LoginState'
-import UserIsLoggedInSidebar from "./UserIsLoggedInSidebar";
-import UserIsNotLoggedInSidebar from "./UserIsNotLoggedInSidebar";
+
 
 
 
@@ -37,34 +29,47 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
       className="dark:text-[#303030] text-[#F8F8F8] dark:hover:backdrop-blur-md dark:hover:bg-white/70 
       mr-[10%] rounded-xl hover:backdrop-blur-xl hover:bg-white/30"
     >
-      <Typography className="text-[0.8rem] dark:text-[#303030] text-[#F8F8F8]">{title}</Typography>
+      <Typography className="text-[1rem] dark:text-[#303030] text-[#F8F8F8]">{title}</Typography>
       <Link to={to} />
     </MenuItem>
   );
 };
 
 const Sidebar = () => {
-    const { userId } = useParams()
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
   const userLoginState = useLoginState()
   
-  // const getSingleUser_API_URL = `${backend_server}/api/v1/users/${userId}`
-  // const [userData, setUserData] = useState()
+  const getSingleUser_API_URL = `${backend_server}/api/v1/users/`
 
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     try {
-  //       const response = await fetch(getSingleUser_API_URL);
-  //       const usersData = await response.json();
-  //       setUserData(usersData);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
+  const [userBookData, setUserBookData] = useState([])
+  const [userData, setUserData] = useState()
+  
 
-  //   fetchUser();
-  // }, [userId]);
+  // Using post to send Cookie and fetch user data
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(getSingleUser_API_URL, {})
+
+      const bookData = await response.data.bookDataAll
+      const usersData = await response.data.userData
+
+      if (bookData) {
+        setUserBookData(bookData)
+      }
+      if (usersData) {
+        setUserData(usersData)
+      }
+    } catch (error) {
+      console.log(error.response)
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [userBookData, userData])
+
   return (
       
       <Box
@@ -106,7 +111,7 @@ const Sidebar = () => {
                 className="dark:text-[#303030] text-[#e0e0e0]"
               >
                 <Typography className="text-[1rem] dark:text-[#303030] text-[#e0e0e0]">
-                  STUDENT
+                  STUDENT 
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon className="dark:text-[#303030] text-[#e0e0e0]"/>
@@ -122,7 +127,7 @@ const Sidebar = () => {
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src='/clientprofile.png'
+                  src='/logo_library.png'
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
@@ -135,7 +140,7 @@ const Sidebar = () => {
                   IU LIBRARY
                 </Typography>
                 <Typography className="text-[1rem] text-[#6a5af9] dark:text-[#4cceac]">
-                  student
+                  {userLoginState.userLogState ? userLoginState.userLogState : "Guest"}
                 </Typography>
               </Box>
             </Box>

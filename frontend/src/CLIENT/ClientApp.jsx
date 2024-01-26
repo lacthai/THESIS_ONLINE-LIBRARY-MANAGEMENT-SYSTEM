@@ -16,6 +16,7 @@ import ForgotPassword from "./forgotPassword/ForgotPassword";
 import OtpForm from "./otpForm/OtpForm";
 import { PrivateRoute } from "./PrivateRoutes/PrivateRoute";
 import Documents from "./Documents/Documents";
+import ClientLogout from "./clientLogout/ClientLogout";
 
 // import Order from './Order/Order'
 // import ClientDashboard from './clientProfile/ClientDashboard'
@@ -84,6 +85,14 @@ const ClientApp = () => {
               element={
                 <PrivateRoute>
                   <Documents />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/logoutclient"
+              element={
+                <PrivateRoute>
+                  <ClientLogout />
                 </PrivateRoute>
               }
             />
