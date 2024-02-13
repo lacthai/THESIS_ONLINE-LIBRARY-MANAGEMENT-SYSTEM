@@ -4,8 +4,11 @@ import './signup.css'
 import { Link, useNavigate } from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast'
 import { BsEye, BsEyeSlash } from 'react-icons/bs'
+import { Modal} from "react-bootstrap";
+
 
 const Signup = () => {
+  const [showTerm, setShowTerm] = useState(false);
   const API_URL = 'http://localhost:5000/api/v1/signup'
 
   const refUsername = useRef(null)
@@ -23,6 +26,9 @@ const Signup = () => {
   const [textField, setTextField] = useState(Empty_Form_Field)
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false) // State variable to track password visibility
+
+  const handleCloseTerm = () => setShowTerm(false);
+  const handleShowTerm = () => setShowTerm(true);
 
   const showLoadingToast = () => {
     return toast.loading('Registering User...', {
@@ -259,11 +265,31 @@ const Signup = () => {
             >
               I accept the{" "}
               <a
-                className='font-medium text-primary-600 text-blue-700 hover:underline dark:text-blue-500'
-                href='#'
+                className='font-medium text-primary-600 text-blue-700 hover:underline dark:text-blue-500 cursor-pointer'
+                onClick={handleShowTerm}
               >
                 Terms and Conditions
               </a>
+              <Modal show={showTerm} onHide={handleCloseTerm} className='flex justify-center items-center'>
+                <Modal.Header closeButton>
+                  <Modal.Title>Terms and Conditions</Modal.Title>
+                </Modal.Header>
+                  <Modal.Body>
+                    <div className="h-[80px] flex justify-center items-center mb-4">
+                      <img src="./logo_IU_circle.png" alt="" className='h-[100%]'/>
+                    </div>
+                    <ul className='list-disc'>
+                      <li>Enter all registered user information into the fields</li>
+                      <li>Use personal gmail to register</li>
+                      <li>Student name has a maximum length of 20 characters</li>
+                      <li>Phone number is limited to 10 characters and must follow the form 98...</li>
+                      <li>Password must contain at least 5 characters and must contain at least 1 number, 1 lower case character and 1 special character</li>
+                    </ul>
+                  </Modal.Body>
+                  <div className="h-[80px] flex justify-center items-center mb-4">
+                      <img src="./email_verified.gif" alt="" className='h-[100%]'/>
+                    </div>
+              </Modal>
             </label>
           </div>
         </div>

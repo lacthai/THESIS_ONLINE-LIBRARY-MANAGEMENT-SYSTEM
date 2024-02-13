@@ -3,6 +3,7 @@ import { backend_server } from '../../main'
 import { Link } from 'react-router-dom'
 import './card.css'
 import RequestBook from '../requestBooks/RequestBook'
+import Loading from '../../Components/Loading/Loading'
 
 const BrowseCollectionBooks = ({ bookData, searchResult }) => {
   const { request_Book } = RequestBook()
@@ -65,7 +66,7 @@ const BrowseCollectionBooks = ({ bookData, searchResult }) => {
         })
       ) : (
         <h5 className='p text-center'>
-          {searchResult ? <p>Loading...</p> : <p>0 Results</p>}
+          {searchResult ? <Loading /> : <p>0 Results</p>}
         </h5>
       )}
     </div>

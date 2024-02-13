@@ -16,6 +16,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import { useLoginState } from '../../LoginState'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
+
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 const pdfFiles = [
   { name: "Cambridge 17", path: "../../../DocumentFile/Cambridge 17.pdf" },
@@ -180,7 +181,7 @@ const Documents = () => {
               : pdfFiles
             ).map((file, index) => (
               <tr key={file.name}>
-                <td className="dark:text-[#303030] text-[#e0e0e0]">{file.name}</td>
+                <td className="dark:text-[#303030] text-[#e0e0e0]">{file.name} <PictureAsPdfIcon className="dark:text-[#D2122E] text-[#fd5c63]"/></td>
                 <td>
                   <button
                     onClick={() => openModal(file)}
@@ -197,10 +198,10 @@ const Documents = () => {
                 <td className="text-center relative">
                 {userLoginState.userLogState ? <>
                 <button onClick={() => downloadPdf(file.path, file.name)} className="dark:text-[#303030] text-[#e0e0e0]"><DownloadIcon className="dark:hover:text-[#4cceac] hover:text-[#6a5af9]"/></button>
-                </> : <>
-                  <WarningAmberIcon className="hover:text-[#C60C30]"/>
+                </> : <div className=" dark:text-[#303030] text-[#e0e0e0]">
+                  <WarningAmberIcon className="  hover:text-[#C60C30]"/>
 
-                </>}
+                </div>}
                 </td>
               </tr>
             ))}
@@ -287,7 +288,7 @@ const Documents = () => {
               : pdfFilesToeic
             ).map((file, index) => (
               <tr key={file.name}>
-                <td className="dark:text-[#303030] text-[#e0e0e0]">{file.name}</td>
+                <td className="dark:text-[#303030] text-[#e0e0e0]">{file.name} <PictureAsPdfIcon className="dark:text-[#D2122E] text-[#fd5c63]"/></td>
                 <td>
                   <button
                     onClick={() => openModal(file)}
@@ -304,10 +305,9 @@ const Documents = () => {
                 <td className="text-center relative">
                 {userLoginState.userLogState ? <>
                 <button onClick={() => downloadPdf(file.path, file.name)} className="dark:text-[#303030] text-[#e0e0e0]"><DownloadIcon className="hover:text-[#4cceac]"/></button>
-                </> : <>
+                </> : <div className="dark:text-[#303030] text-[#e0e0e0]">
                   <WarningAmberIcon className="hover:text-[#C60C30]"/>
-
-                </>}
+                </div>}
                 </td>
               </tr>
             ))}

@@ -4,6 +4,7 @@ import './card.css'
 import RequestBook from '../requestBooks/RequestBook'
 import { backend_server } from '../../main'
 import axios from 'axios'
+import Loading from '../../Components/Loading/Loading'
 
 const PopularBooks = () => {
   const PopularBooks_API_URL = `${backend_server}/api/v1/popularBooks`
@@ -82,7 +83,7 @@ const PopularBooks = () => {
           )
         })
       ) : (
-        <p className='p text-center'>Loading ...</p>
+        <Loading />
       )}
     </div>
   )

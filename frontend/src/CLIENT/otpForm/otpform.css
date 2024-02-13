@@ -10,3 +10,10 @@
   align-items: center;
   margin-bottom: 1rem;
 }
+
+
+.otp_banner {
+  background-image: url("./otp_email.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}

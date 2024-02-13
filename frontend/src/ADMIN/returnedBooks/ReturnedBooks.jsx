@@ -74,7 +74,6 @@ const ReturnedBooks = () => {
                   <th scope='col' className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>Book</th>
                   <th scope='col' className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>Return Due</th>
                   <th scope='col' className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>Return Status</th>
-                  <th scope='col' className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>Charge</th>
                   <th scope='col' className=' bg-[#e0e0e0] dark:bg-[#ffffff]'> Update</th>
                 </tr>
               </thead>
@@ -99,7 +98,6 @@ const ReturnedBooks = () => {
                       <td style={{ width: '250px' }} className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>{bookTitle}</td>
                       <td className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>{new Date(returnDate).toDateString()}</td>
                       {isReturned ? <td className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>Returned</td> : <td className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>Not Returned</td>}
-                      <td className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>Nrs.{extraCharge}/-</td>
 
                       <td className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>
                         <form className='d-flex' onSubmit={handleFormSubmit}>

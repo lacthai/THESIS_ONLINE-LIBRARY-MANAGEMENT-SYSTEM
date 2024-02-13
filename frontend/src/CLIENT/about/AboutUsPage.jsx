@@ -29,13 +29,13 @@ const AboutUsPage = () => {
           <p>Summer Collection</p>
           <h2>Leading the way and outstanding features</h2>
         </div>
-        <img src="/book.jpg" alt="" className="banner1" />
-        <img src="/book.jpg" alt="" className="banner2" />
-        <img src="/book.jpg" alt="" className="banner3" />
-        <img src="/book.jpg" alt="" className="banner4" />
-        <img src="/book.jpg" alt="" className="banner5" />
-        <img src="/book.jpg" alt="" className="banner6" />
-        <img src="/book.jpg" alt="" className="banner7" />
+        <img src="/book_gif.gif" alt="" className="banner1" />
+        <img src="/book_gif.gif" alt="" className="banner2" />
+        <img src="/book_gif.gif" alt="" className="banner3" />
+        <img src="/book_gif.gif" alt="" className="banner4" />
+        <img src="/book_gif.gif" alt="" className="banner5" />
+        <img src="/book_gif.gif" alt="" className="banner6" />
+        <img src="/book_gif.gif" alt="" className="banner7" />
         <div className="about-us_icon1">
           <GiTechnoHeart style={{ fontSize: "2.5rem", color: "#FF69B4" }} />
         </div>

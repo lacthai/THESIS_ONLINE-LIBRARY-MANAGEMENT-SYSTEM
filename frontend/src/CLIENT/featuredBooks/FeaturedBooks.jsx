@@ -4,6 +4,7 @@ import BookList from './BookList'
 import { Row } from 'react-bootstrap'
 import axios from 'axios'
 import { backend_server } from '../../main'
+import Loading from '../../Components/Loading/Loading'
 
 const FeaturedBooks = () => {
   const featuredBooks_API_URL = `${backend_server}/api/v1/featuredBooks`
@@ -73,7 +74,7 @@ const FeaturedBooks = () => {
           </Row>{' '}
         </div>
       ) : (
-        <p className='p text-center'>Loading ...</p>
+        <Loading />
       )}
     </div>
   )

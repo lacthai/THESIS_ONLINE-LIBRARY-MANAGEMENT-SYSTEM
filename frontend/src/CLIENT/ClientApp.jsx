@@ -17,6 +17,7 @@ import OtpForm from "./otpForm/OtpForm";
 import { PrivateRoute } from "./PrivateRoutes/PrivateRoute";
 import Documents from "./Documents/Documents";
 import ClientLogout from "./clientLogout/ClientLogout";
+import Notifications from "./Notifications/Notifications";
 
 // import Order from './Order/Order'
 // import ClientDashboard from './clientProfile/ClientDashboard'
@@ -93,6 +94,14 @@ const ClientApp = () => {
               element={
                 <PrivateRoute>
                   <ClientLogout />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/notifications"
+              element={
+                <PrivateRoute>
+                  <Notifications />
                 </PrivateRoute>
               }
             />

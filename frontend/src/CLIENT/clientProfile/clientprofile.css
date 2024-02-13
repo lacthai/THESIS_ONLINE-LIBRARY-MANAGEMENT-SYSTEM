@@ -92,8 +92,8 @@
 .profile_box {
   position: absolute;
   background-color: white;
-  height: 100vh;
-  transform: translateY(-20%);
+  height: 80vh;
+  transform: translateY(-15%);
   left: 5%;
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -143,4 +143,8 @@
   top: -200px;
   font-size: 2.5rem;
   cursor: pointer;
+}
+
+.toast_pending:hover .show_toast_pending {
+  opacity: 0.85 !important;
 }

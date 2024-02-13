@@ -4,6 +4,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import RequestBook from '../requestBooks/RequestBook'
 import { Toaster } from 'react-hot-toast'
+import Loading from '../../Components/Loading/Loading'
 
 const RecentlyAddedBooks = () => {
   const recentBooks_Api_URL = `${backend_server}/api/v1/recentBooks`
@@ -98,7 +99,7 @@ const RecentlyAddedBooks = () => {
             )
           })
         ) : (
-          <p className='p text-center'>Loading ...</p>
+          <Loading />
         )}
       </div>
     </div>
