@@ -5,6 +5,7 @@ import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 import "./forgot.css";
 import { Modal} from "react-bootstrap";
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
 
 const ForgotPassword = () => {
@@ -234,21 +235,11 @@ const ForgotPassword = () => {
               />
             </div>
             {!passwordMatch && (
-              <div className="alert alert-danger" role="alert">
-                Password doesn't match
+              <div className="border-[2px] border-[#D2122E] text-[#D2122E] w-fit px-2 rounded-2xl flex justify-center items-center" role="alert">
+                <WarningAmberIcon  className="text-[1rem] mr-1"/>Password doesn't match
               </div>
             )}
-            <div className="flex items-start">
-              <div className="flex items-center h-5">
-                <input
-                  id="terms"
-                  aria-describedby="terms"
-                  type="checkbox"
-                  className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                  required={true}
-                />
-              </div>             
-            </div>
+          
             <button
               disabled={loading}
               type="submit"
