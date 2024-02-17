@@ -68,40 +68,7 @@ const OtpForm = () => {
 
   return (
     <div className='otp_banner h-[100vh] overflow-hidden flex justify-center items-center'> 
-    {/* <div className=' container text-center my-3'>
-      <h1 className='h1'>Email Verification Form</h1>
-      <p className='p'>
-        Enter your <strong>OTP</strong> code :{' '}
-      </p>
-
-      <form className='form otp-form' onSubmit={handleFormSubmit}>
-        <div className='otp-container'>
-          <input
-            type='text'
-            autoComplete='off'
-            className='form-control'
-            name='otpCode'
-            value={otp_code}
-            onChange={(e) => setOtp_code(e.target.value)}
-          />
-        </div>
-        <div className='col m-3'>
-          <button
-            className='btn btn-success m-2'
-            onClick={handleVerifyFormSubmit}
-          >
-            Submit
-          </button>
-          <button
-            className='btn btn-secondary m-2'
-            disabled={loading}
-            onClick={handleResendFormSubmit}
-          >
-            {loading ? 'Sending Otp...' : 'Re-send Otp'}
-          </button>
-        </div>
-      </form>
-    </div> */}
+   
     <div className="w-full max-w-lg p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 ">
         <h1 className="text-xl text-center font-bold text-gray-900 md:text-2xl ">
           Email Verification Form

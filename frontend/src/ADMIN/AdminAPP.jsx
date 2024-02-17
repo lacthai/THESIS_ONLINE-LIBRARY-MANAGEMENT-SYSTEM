@@ -114,7 +114,11 @@ const AdminAPP = () => {
             }
           />
           <Route path="*" element={<PagenotFound />} />
-          <Route path="/admin/adminsignup" element={<AdminSignup />} />
+          <Route path="/admin/adminsignup" element={
+            <PrivateRouteAdmin>
+              <AdminSignup />
+            </PrivateRouteAdmin>
+        } />
           <Route path="/admin/otp" element={<AdminOtpForm />} />
         </Routes>
       </Router>

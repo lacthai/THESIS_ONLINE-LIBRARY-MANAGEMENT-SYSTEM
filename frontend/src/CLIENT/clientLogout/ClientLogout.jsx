@@ -32,7 +32,7 @@ const ClientLogout = () => {
       <div className='row'>
         <div className='col text-center'>
           <img
-            className='img-fluid '
+            className='img-fluid rounded-3xl'
             src='/logout.png'
             alt=''
             style={{ width: '500px' }}

@@ -30,7 +30,7 @@ const AdminLogout = () => {
       <div className='row'>
         <div className='flex flex-col justify-center items-center'>
           <img
-            className='img-fluid'
+            className='img-fluid rounded-3xl'
             src='/logout.png'
             alt=''
             style={{ width: '350px' }}

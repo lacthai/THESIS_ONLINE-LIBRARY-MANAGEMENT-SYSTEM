@@ -111,7 +111,7 @@ const Sidebar = () => {
                 className="dark:text-[#303030] text-[#e0e0e0]"
               >
                 <Typography className="text-[1rem] dark:text-[#303030] text-[#e0e0e0]">
-                  STUDENT 
+                {userLoginState.userLogState ? "STUDENT" : "GUEST"}
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon className="dark:text-[#303030] text-[#e0e0e0]"/>
@@ -140,7 +140,7 @@ const Sidebar = () => {
                   IU LIBRARY
                 </Typography>
                 <Typography className="text-[1rem] text-[#6a5af9] dark:text-[#4cceac]">
-                  {userLoginState.userLogState ? userLoginState.userLogState : "Guest"}
+                  {userLoginState.userLogState ? userLoginState.userLogState : "Viewer"}
                 </Typography>
               </Box>
             </Box>

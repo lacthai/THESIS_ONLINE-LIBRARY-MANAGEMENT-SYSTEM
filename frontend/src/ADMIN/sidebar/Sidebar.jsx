@@ -17,6 +17,7 @@ import ContactMailIcon from '@mui/icons-material/ContactMail';
 import FolderSpecialIcon from '@mui/icons-material/FolderSpecial';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
 
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
@@ -39,6 +40,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+
   return (
     <Box
     sx={{
@@ -195,19 +197,19 @@ const Sidebar = () => {
           />
 
 
-{/* <Typography
+<Typography
             sx={{ m: "15px 0 5px 20px" }}
             className="text-[0.8rem] text-[#909090] dark:text-[#484848]"
           >
-            Contacts
+             Admin Account
           </Typography>
           <Item
-            title="Messenger"
-            to="/chat"
-            icon={<MessageIcon />}
+            title="Admin Sign Up"
+            to="/admin/adminsignup"
+            icon={<GroupAddIcon />}
             selected={selected}
             setSelected={setSelected}
-          /> */}
+          />
         </Box>
       </Menu>
     </ProSidebar>

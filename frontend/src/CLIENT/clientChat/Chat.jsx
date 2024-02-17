@@ -29,28 +29,25 @@ const Review = (props) => {
   const { name,email, gender, phone , problem , idea} = state;
 
   return (
-    <div style={{ width: "100%" }}>
+    <div className="w-full">
       <h3 className=" font-semibold">Summary</h3>
-      <table>
-        <tbody>
-          <tr>
-            <td>Name:</td>
-            <td className="ml-1">{name.value}</td>
-          </tr>
-          <tr>
-            <td>Email:</td>
-            <td className="ml-1">{email.value}</td>
-          </tr>
-          <tr>
-            <td>Gender:</td>
-            <td className="ml-1">{gender.value}</td>
-          </tr>
-          <tr>
-            <td>Phone:</td>
-            <td className="ml-1">{phone.value}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div className=" uppercase font-semibold">user information</div>
+      <div className="flex flex-row">
+        <span>Name:</span>
+        <span className="ml-1">{name.value}</span>
+      </div>
+      <div className="flex flex-row">
+        <span>Email:</span>
+        <span className="ml-1">{email.value}</span>
+      </div>
+      <div className="flex flex-row">
+        <span>Phone:</span>
+        <span className="ml-1">{phone.value}</span>
+      </div>
+      <div className="flex flex-row">
+        <span>Gender:</span>
+        <span className="ml-1 capitalize">{gender.value}</span>
+      </div>
       <div className="flex flex-col">
         <span className=" font-semibold uppercase">Problem encountered:</span>
         <span className=" capitalize">- {problem.value}</span>
@@ -584,11 +581,23 @@ const Chat = () => {
             {
               id: "name",
               user: true,
+              validator: (value) => {
+                if (value.length > 20) {
+                  return "Number of characters limited to 20";
+                // } else if (value < 0) {
+                //   return "value must be positive";
+                // } else if (value.length < 6) {
+                //   return "value must be greater than 6";
+                // } else if (value.length > 11) {
+                //   return `${value}? 11 character limit!!!`;
+                }
+                return true;
+              },
               trigger: "email-input",
             },
             {
               id: "email-input",
-              message: "Hi {previousValue}! What is your email?",
+              message: "Hi {previousValue} ! What is your email?",
               trigger: "email",
             },
             {
@@ -606,7 +615,7 @@ const Chat = () => {
             },
             {
               id: "email-result",
-              message: "Email recording system: {previousValue}! What is your gender?",
+              message: "Email recording system: {previousValue} ! What is your gender?",
               trigger: "gender",
             },
             {

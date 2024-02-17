@@ -115,8 +115,6 @@
     text-align: center;
     position: relative;
     width: 100%;
-    background-color: red;
-    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -169,7 +167,7 @@
     font-weight: 600;
 }
 
-.about-us_button1 button:hover {
+.about-us_button1 .button_explore:hover {
     transform: scale(1.02);
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
