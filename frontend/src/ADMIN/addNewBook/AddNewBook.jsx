@@ -4,6 +4,7 @@ import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import { backend_server } from "../../main";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { MenuItem, Select } from "@mui/material";
 
 
 const AddNewBook = () => {
@@ -160,18 +161,18 @@ const AddNewBook = () => {
               <Form.Label className="dark:text-[#303030] text-[#e0e0e0]">Category</Form.Label>
               <Form.Control
                 type="text"
-                onChange={handleOnChange}
+                onChange={handleCategoryOnChange}
                 value={inputvalue.category}
                 placeholder="Category"
                 name="category"
                 autoComplete="off"
                 required
               />
-              <div>
+              <div className=" bg-[#e0e0e0] overflow-y-auto h-[80px]">
                 {relatedCategories.map((category) => (
                   <div
                     key={category}
-                    className="clickable-category"
+                    className="clickable-category cursor-pointer"
                     onClick={() => handleCategorySelection(category)}
                   >
                     {category}

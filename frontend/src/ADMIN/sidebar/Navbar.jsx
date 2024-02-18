@@ -31,11 +31,11 @@ const Navbar = () => {
             <DarkModeOutlinedIcon onClick={() => toggleDarkMode(isDarkMode)} className="text-[#E0E0E0]"/>
           )}
         </IconButton>
-        <IconButton>
+        {/* <IconButton>
           <Link to="/notifications">
           <NotificationsOutlinedIcon className="dark:text-[#383838] text-[#E0E0E0]"/>
           </Link>
-        </IconButton>
+        </IconButton> */}
         <IconButton>
           <Link to="/admin/logout">
           <PowerSettingsNewIcon className="dark:text-[#383838] text-[#E0E0E0]"/>

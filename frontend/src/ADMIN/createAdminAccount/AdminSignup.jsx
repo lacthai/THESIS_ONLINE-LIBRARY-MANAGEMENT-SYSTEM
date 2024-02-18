@@ -127,7 +127,7 @@ const AdminSignup = () => {
           </label>
           <input
                  type='text'
-                 placeholder='Enter name..'
+                 placeholder='Enter admin name..'
                  id='usernamefield'
                  value={textField.username}
                  onChange={HandleOnChange}
@@ -150,7 +150,7 @@ const AdminSignup = () => {
         
           <input
                  type='email'
-                 placeholder='e.g. user@gmail.com'
+                 placeholder='e.g. admin@gmail.com'
                  id='emailfield'
                  value={textField.email}
                  onChange={HandleOnChange}

@@ -64,6 +64,9 @@ const ClientDashboard = ({ userBookData }) => {
                     returnDate,
                   } = users;
 
+
+                 
+
                   let content;
                  
                   if (issueStatus === "PENDING") {
@@ -115,6 +118,7 @@ const ClientDashboard = ({ userBookData }) => {
                     returnDate === null
                       ? "NONE"
                       : new Date(returnDate).toDateString();
+              
                   return (
                     <tr key={_id}>
                       <th scope="row">{index + 1}</th>

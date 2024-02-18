@@ -11,6 +11,8 @@ const IssuedBooks = () => {
 
   const [isAnyBooksIssued, setIsAnyBooksIssued] = useState(false)
 
+
+
   const fetchNotReturnedBooks = async () => {
     try {
       const response = await axios.get(NOT_RETURNED_API)
@@ -40,7 +42,7 @@ const IssuedBooks = () => {
                 <tr>
                   <th scope='col'className=' bg-[#e0e0e0] dark:bg-[#ffffff]' >No.</th>
                   <th scope='col'className=' bg-[#e0e0e0] dark:bg-[#ffffff]' >Book</th>
-                  {/* <th scope='col'>Username</th> */}
+                  <th scope='col' className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>Username</th>
                   <th scope='col'className=' bg-[#e0e0e0] dark:bg-[#ffffff]' >Email</th>
                   <th scope='col'className=' bg-[#e0e0e0] dark:bg-[#ffffff]' >Issue Date</th>
                   <th scope='col'className=' bg-[#e0e0e0] dark:bg-[#ffffff]' >Return Due</th>
@@ -57,18 +59,21 @@ const IssuedBooks = () => {
                     username,
                     isReturned,
                     returnDate,
-                    extraCharge,
                     issueDate,
                   } = book
+
+                  const currentDate = new Date();
+
+                  const isOverdue = new Date(returnDate) < currentDate;
 
                   return (
                     <tr key={_id}>
                       <th scope='row' className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>{index + 1}</th>
                       <td className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>{bookTitle}</td>
-                      {/* <td>{username}</td> */}
+                      <td className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>{username}</td>
                       <td className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>{userEmail}</td>
                       <td className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>{new Date(issueDate).toDateString()}</td>
-                      <td className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>{new Date(returnDate).toDateString()}</td>
+                      <td className={`bg-[#e0e0e0] dark:bg-[#ffffff] ${isOverdue ? 'text-red-500' : 'text-black'}`}>{new Date(returnDate).toDateString()}</td>
                       {isReturned ? <td className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>Returned</td> : <td className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>Not Returned</td>}
                     </tr>
                   )

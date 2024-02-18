@@ -133,6 +133,7 @@ const Chat = () => {
             Online library system management website designed by:{" "}
             <Link to="https://github.com/lacthai">@Lacthai</Link>
           </li>
+          <li>More Informations: <Link to="/about">Click Here</Link></li>
         </ul>
       </div>
     );

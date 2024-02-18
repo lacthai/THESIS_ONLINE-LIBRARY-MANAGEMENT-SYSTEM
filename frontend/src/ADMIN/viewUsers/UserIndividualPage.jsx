@@ -215,7 +215,6 @@ const UserIndividualPage = () => {
                     _id,
                     issueStatus,
                     isReturned,
-                    extraCharge,
                     issueDate,
                     returnDate,
                   } = users;

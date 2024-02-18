@@ -70,11 +70,11 @@ const Navbar = () => {
             <DarkModeOutlinedIcon onClick={() => toggleDarkMode(isDarkMode)} className="text-[#E0E0E0]"/>
           )}
         </IconButton>
-        <IconButton>
+        {/* <IconButton>
           {userLoginState.userLogState ? <Link to="/notifications">
           <NotificationsOutlinedIcon className="dark:text-[#383838] text-[#E0E0E0]"/>
           </Link> : <></>}
-        </IconButton>
+        </IconButton> */}
         
           {userLoginState.userLogState ? <UserLogin /> : <UserSignin />}
         {/* <div className={`${dropdown ? "block" : "hidden"} absolute h-[100px] w-[130px] backdrop-opacity-10 backdrop-invert bg-white/30 bottom-[-90px] right-3 z-50 rounded-xl overflow-hidden`}>
