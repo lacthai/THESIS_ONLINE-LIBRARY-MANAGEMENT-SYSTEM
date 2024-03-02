@@ -19,6 +19,8 @@ import AdminSignup from "./createAdminAccount/AdminSignup";
 // import AdminOtpForm from "./adminOTP/adminOtpForm";
 import AdminOtpForm from "./adminOTP/AdminOtpForm";
 import { PrivateRouteAdmin } from "./privateRoutesAdmin/privateRoutesAdmin";
+import AdminChartEvaluate from "./adminChart/adminChartEvaluate";
+
 
 const AdminAPP = () => {
   return (
@@ -86,6 +88,14 @@ const AdminAPP = () => {
             element={
               <PrivateRouteAdmin>
                 <BooksRequests />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            path="/admin/chart"
+            element={
+              <PrivateRouteAdmin>
+                <AdminChartEvaluate />
               </PrivateRouteAdmin>
             }
           />

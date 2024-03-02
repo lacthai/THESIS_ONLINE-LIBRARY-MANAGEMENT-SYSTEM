@@ -44,8 +44,7 @@ const postBooks = async (req, res) => {
 
   // Book title fetch
   const bookDetails = await BookSchema.findById(bookId);
-  const { title } = bookDetails;
-
+  const { title, category} = bookDetails;
   // Check if user has previously requested for same book with id
   const checkPrevRequest = await BookTransaction.find({ userId, bookId });
 
@@ -75,6 +74,7 @@ const postBooks = async (req, res) => {
       userEmail,
       username,
       bookTitle: title,
+      bookCategory: category,
     });
 
     // Update users total requested books on 'UserDetails' collection
@@ -113,7 +113,7 @@ const postIssueBooks = async (req, res) => {
 
   // Book title fetch
   const bookDetails = await BookSchema.findById(bookId);
-  const { title } = bookDetails;
+  const { title, category } = bookDetails;
 
   // Check if user has previously requested for same book with id
   const checkPrevRequest = await BookTransaction.find({ userId, bookId });
@@ -143,6 +143,7 @@ const postIssueBooks = async (req, res) => {
       userEmail,
       username,
       bookTitle: title,
+      bookCategory: category,
       issueStatus: "ACCEPTED",
       issueDate: new Date(),
       returnDate: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000), // Add 10 days to the current date
@@ -259,7 +260,7 @@ const patchRequestedBooks = async (req, res) => {
   );
 
   // Fetching Book ID and Book Title for updating popular books if STATUS is ACCEPTED
-  const { bookId, bookTitle, userId, returnDate, userEmail } = result;
+  const { bookId, bookTitle, userId, returnDate, userEmail , bookCategory} = result;
 
   // If book return TRUE ,
   if (isReturned) {

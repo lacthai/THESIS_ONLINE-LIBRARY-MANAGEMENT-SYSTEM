@@ -22,7 +22,9 @@ const booksRouterRecentBooks = require("./routes/booksRoutesRecentBooks");
 const booksRouterFeaturedBooks = require("./routes/booksRoutesFeatured");
 const requestBookRouter = require("./routes/requestBooksRoute");
 const popularBooksRouter = require("./routes/popularBooksRoutes");
-
+const bookChartRouter = require("./routes/bookChartRoute");
+const bookPieChartRouter = require("./routes/bookPieChartRoute");
+const mostUserRouter = require("./routes/mostUserRoute");
 const userRouter = require("./routes/usersRoute");
 
 const CheckBookReturnRouter = require("./routes/checkBookReturn");
@@ -83,7 +85,9 @@ app.use("/api/v1/recentBooks", booksRouterRecentBooks);
 app.use("/api/v1/featuredBooks", booksRouterFeaturedBooks);
 app.use("/api/v1/requestBooks", verifyToken, requestBookRouter);
 app.use("/api/v1/popularBooks", popularBooksRouter);
-
+app.use("/api/v1/mostBorrowed", bookChartRouter);
+app.use("/api/v1/mostBorrowedCategories", bookPieChartRouter);
+app.use("/api/v1/mostBorrowedUsers", mostUserRouter)
 // User Routes
 app.use("/api/v1/users", verifyToken, userRouter);
 
@@ -177,6 +181,7 @@ io.on('connection', socket => {
 
 // Query Db
 const QueryRouter = require("./utils/MongoDbQuery");
+
 
 app.use("/api/v1/query", QueryRouter);
 

@@ -23,6 +23,10 @@ const BookTransaction = new mongoose.Schema({
     type: String,
     required: true,
   },
+  bookCategory: {
+    type: String,
+    required: true,
+  },
   // Pending, Accepted , Cancelled
   issueStatus: {
     type: String,

@@ -3,6 +3,9 @@ import { backend_server } from '../../main'
 import axios from 'axios'
 import { useState } from 'react'
 import { Toaster, toast } from 'react-hot-toast'
+import { debounce } from 'lodash';
+
+
 
 const BooksRequests = () => {
   const Pending_Book_API_Url = `${backend_server}/api/v1/requestBooks`
@@ -12,6 +15,8 @@ const BooksRequests = () => {
   // Stored selected IssueStatus from FORM
   const [bookIssueStatus, setBookIssueStatus] = useState()
   const [isAnyBooksPending, setIsAnyBooksPending] = useState(true)
+  const [filteredBooks, setFilteredBooks] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const fetchPendingBooks = async () => {
     try {
@@ -57,13 +62,46 @@ const BooksRequests = () => {
     setBookIssueStatus(selectedIssueStatus)
   }
 
+
+  useEffect(() => {
+    const debouncedFilter = debounce(filterBooks, 300);
+    debouncedFilter(searchQuery);
+    return () => {
+      debouncedFilter.cancel();
+    };
+  }, [searchQuery]);
+
+  const filterBooks = (query) => {
+    if (query.trim() === '') {
+      setFilteredBooks(pendingBooks); // Show all books if no search query
+    } else {
+      const filteredData = pendingBooks.filter(
+        (book) =>
+          book.username.toLowerCase().includes(query.toLowerCase()) ||
+          book.userEmail.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredBooks(filteredData);
+    }
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
   return (
-    <div className='container mt-2 h-[120vh]'>
+    <div className='container mt-2 h-[120vh] px-8'>
       <h1 className='h1 text-center dark:text-[#303030] text-[#e0e0e0]'>Books Request's</h1>
       {isAnyBooksPending ? (
         pendingBooks.length > 0 ? (
           <div className='row mt-3'>
-            <table className='table table-hover'>
+            <input
+            type='text'
+            className='form-control mb-4'
+            placeholder='Search by username or email'
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
+            <table className='table table-hover border-[1px] border-[#bbbbbb]'>
               <thead>
                 <tr>
                   <th scope='col' className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>No.</th>
@@ -76,7 +114,7 @@ const BooksRequests = () => {
               </thead>
 
               <tbody>
-                {pendingBooks.map((book, index) => {
+                {(searchQuery ? filteredBooks : pendingBooks).map((book, index) => {
                   const { _id, userEmail, bookTitle, issueStatus, username } =
                     book
 

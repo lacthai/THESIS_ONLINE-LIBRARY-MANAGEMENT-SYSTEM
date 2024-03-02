@@ -336,6 +336,8 @@ const Chat = () => {
           headerTitle="📖 IU library chatbot"
           customDelay="1000"
           userAvatar="/logo_admin.png"
+          recognitionLang
+          recognitionPlaceholder
           steps={[
             {
               id: "1",

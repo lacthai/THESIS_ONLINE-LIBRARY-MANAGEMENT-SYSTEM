@@ -60,7 +60,7 @@ const ManageBooks = () => {
     <div className='container mt-2 h-[150vh]'>
       <h1 className='h1 text-center font-semibold dark:text-[#303030] text-[#e0e0e0]'>Manage Books </h1>
 
-      <div className='row my-3'>
+      <div className='row my-3 px-4'>
         {/* Filter gareko books lai set Gareko */}
         <ManageSearchBooks
           setAllBooks={setAllBooks}
@@ -70,8 +70,8 @@ const ManageBooks = () => {
 
       {/* TABLE BOOK DATA */}
       {allBooks.length > 0 ? (
-        <div className='row mt-3'>
-          <table className='table table-ho'>
+        <div className='row mt-3 px-4'>
+          <table className='table table-hover border-[1px] border-[#bbbbbb]'>
             <thead>
               <tr>
                 <th scope='col' className=' bg-[#e0e0e0] dark:bg-[#ffffff]'>No.</th>

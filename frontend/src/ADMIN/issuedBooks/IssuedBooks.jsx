@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-
 import axios from 'axios'
 import { backend_server } from '../../main'
 import { Link } from 'react-router-dom'
+import { debounce } from 'lodash';
+
 
 const IssuedBooks = () => {
   const NOT_RETURNED_API = `${backend_server}/api/v1/requestBooks/notreturnedbooks`
@@ -10,7 +11,8 @@ const IssuedBooks = () => {
   const [notReturnedBooks, setNotReturnedBooks] = useState([])
 
   const [isAnyBooksIssued, setIsAnyBooksIssued] = useState(false)
-
+  const [filteredBooks, setFilteredBooks] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
 
   const fetchNotReturnedBooks = async () => {
@@ -30,14 +32,52 @@ const IssuedBooks = () => {
     fetchNotReturnedBooks()
   }, [])
 
+
+  useEffect(() => {
+    const debouncedFilter = debounce(filterBooks, 300); // Debounce filtering function
+    debouncedFilter(searchQuery); // Call filtering function with the current searchQuery
+    return () => {
+      debouncedFilter.cancel(); // Cleanup on unmount or when searchQuery changes
+    };
+  }, [searchQuery]);
+
+  const filterBooks = (query) => {
+    if (!query) {
+      setFilteredBooks(notReturnedBooks); // If search query is empty, display all books
+    } else {
+      const filteredData = notReturnedBooks.filter(
+        (book) =>
+          book.username.toLowerCase().includes(query.toLowerCase()) ||
+          book.userEmail.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredBooks(filteredData);
+    }
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
   return (
-    <div className='container mt-2 h-[120vh]'>
+    <div className='container mt-2 h-[120vh] px-4'>
       <h1 className='h1 text-center dark:text-[#303030] text-[#e0e0e0]'>Issued Books</h1>
+
+      <div className="row mt-3">
+        <div className="col">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search by user name or email"
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
+        </div>
+      </div>
 
       {isAnyBooksIssued ? (
         notReturnedBooks.length > 0 ? (
           <div className='row mt-3'>
-            <table className='table table-hover'>
+            <table className='table table-hover border-[1px] border-[#bbbbbb]'>
               <thead>
                 <tr>
                   <th scope='col'className=' bg-[#e0e0e0] dark:bg-[#ffffff]' >No.</th>
@@ -51,7 +91,7 @@ const IssuedBooks = () => {
               </thead>
 
               <tbody>
-                {notReturnedBooks.map((book, index) => {
+                {(searchQuery ? filteredBooks : notReturnedBooks).map((book, index) => {
                   const {
                     _id,
                     userEmail,

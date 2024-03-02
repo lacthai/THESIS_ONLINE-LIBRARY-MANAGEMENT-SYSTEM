@@ -18,7 +18,7 @@ import FolderSpecialIcon from '@mui/icons-material/FolderSpecial';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
-
+import BarChartIcon from '@mui/icons-material/BarChart';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   
@@ -118,11 +118,23 @@ const Sidebar = () => {
 
         <Box paddingLeft={isCollapsed ? undefined : "10%"}>
         
-
+        <Typography
+            sx={{ m: "15px 0 5px 20px" }}
+            className="text-[0.8rem] text-[#909090] dark:text-[#484848]"
+          >
+            Evaluation
+          </Typography>
           <Item
             title="Home"
             to="/admin"
             icon={<HomeOutlinedIcon/>}
+            selected={selected}
+            setSelected={setSelected}
+          />
+          <Item
+            title="Chart"
+            to="/admin/chart"
+            icon={<BarChartIcon/>}
             selected={selected}
             setSelected={setSelected}
           />
