@@ -6,7 +6,7 @@ const getMostBorrowedCategories = async (req, res) => {
         const mostBorrowedCategories = await BookTransaction.aggregate([
             { $group: { _id: "$bookCategory", count: { $sum: 1 } } },
             { $sort: { count: -1 } },
-            { $limit: 11 },
+            { $limit: 12 },
         ]);
 
         // Format the data for Chart.js

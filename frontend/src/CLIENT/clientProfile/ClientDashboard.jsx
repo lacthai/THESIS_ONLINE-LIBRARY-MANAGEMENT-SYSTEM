@@ -9,11 +9,19 @@ import ErrorIcon from '@mui/icons-material/Error';
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import SimCardAlertIcon from '@mui/icons-material/SimCardAlert';
 import "./clientprofile.css";
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 const ClientDashboard = ({ userBookData }) => {
   const DELETE_BOOK_API = `${backend_server}/api/v1/requestBooks`;
 
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(4);
+
   // Calculate the index of the first and last item to display on the current page
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = userBookData.slice(indexOfFirstItem, indexOfLastItem);
 
   const handleRemoveBook = async (transactionId, issueStatus) => {
     try {
@@ -53,21 +61,17 @@ const ClientDashboard = ({ userBookData }) => {
               </tr>
             </thead>
             <tbody>
-              {userBookData &&
-                userBookData.map((users, index) => {
-                  const {
-                    bookTitle,
-                    _id,
-                    issueStatus,
-                    isReturned,
-                    issueDate,
-                    returnDate,
-                  } = users;
+              {currentItems.map((users, index) => {
+                const {
+                  bookTitle,
+                  _id,
+                  issueStatus,
+                  isReturned,
+                  issueDate,
+                  returnDate,
+                } = users;
 
-
-                 
-
-                  let content;
+                let content;
                  
                   if (issueStatus === "PENDING") {
                     content = (
@@ -168,11 +172,38 @@ const ClientDashboard = ({ userBookData }) => {
                         ""
                       )}
                     </tr>
-                  );
-                })}
+                  );              
+              })}
             </tbody>
           </table>
           
+          {/* Pagination */}
+          <nav className="flex justify-end">
+            <ul className="pagination justify-content-center">
+              {userBookData.length > itemsPerPage && (
+                <React.Fragment>
+                  <li className="page-item">
+                    <button
+                      className="rotate-180 border-[1px] border-[#484848] py-1 px-2 rounded-xl bg-[#ffffff]"
+                      onClick={() => setCurrentPage(currentPage - 1)}
+                      disabled={currentPage === 1}
+                    >
+                      <PlayArrowIcon />
+                    </button>
+                  </li>
+                  <li className="page-item">
+                    <button
+                      className="border-[1px] border-[#484848] py-1 px-2 rounded-xl bg-[#ffffff]"
+                      onClick={() => setCurrentPage(currentPage + 1)}
+                      disabled={indexOfLastItem >= userBookData.length}
+                    >
+                      <PlayArrowIcon />
+                    </button>
+                  </li>
+                </React.Fragment>
+              )}
+            </ul>
+          </nav>
         </div>
       ) : (
         <p className="p text-center mt-4 dark:text-[#303030] text-[#e0e0e0] flex flex-col  justify-center items-center"><SimCardAlertIcon className="text-[3rem]"/>0 Book Data</p>

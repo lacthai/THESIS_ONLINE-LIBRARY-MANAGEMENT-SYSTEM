@@ -25,6 +25,7 @@ const popularBooksRouter = require("./routes/popularBooksRoutes");
 const bookChartRouter = require("./routes/bookChartRoute");
 const bookPieChartRouter = require("./routes/bookPieChartRoute");
 const mostUserRouter = require("./routes/mostUserRoute");
+const userFeedBackRouter = require("./routes/userFeedBackRoute");
 const userRouter = require("./routes/usersRoute");
 
 const CheckBookReturnRouter = require("./routes/checkBookReturn");
@@ -87,6 +88,7 @@ app.use("/api/v1/requestBooks", verifyToken, requestBookRouter);
 app.use("/api/v1/popularBooks", popularBooksRouter);
 app.use("/api/v1/mostBorrowed", bookChartRouter);
 app.use("/api/v1/mostBorrowedCategories", bookPieChartRouter);
+app.use("/api/v1/userInputs",userFeedBackRouter);
 app.use("/api/v1/mostBorrowedUsers", mostUserRouter)
 // User Routes
 app.use("/api/v1/users", verifyToken, userRouter);

@@ -28,14 +28,14 @@ const PopularBooks = () => {
   }, [])
 
   return (
-    <div className='row'>
+    <div className='grid grid-cols-4 gap-3'>
       {popularBooks.length > 0 ? (
         popularBooks.map((book) => {
           const { _id, title, image, author, available } = book
           const imgSrc = `${backend_server}/${image}`
 
           return (
-            <div className='col-lg-3 col-md-4 col-sm-6 col-6 gy-3' key={_id}>
+            <div className='' key={_id}>
               <div className='card h-100'>
                 <div className='card-img-top'>
                   <img

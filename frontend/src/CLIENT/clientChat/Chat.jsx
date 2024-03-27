@@ -9,8 +9,11 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { BiLogoGmail } from "react-icons/bi";
+import { backend_server } from "../../main";
+import axios from "axios";
+
 const Review = (props) => {
-  const [state, setState] = useState({
+  const [userInput, setUserInput] = useState({
     name: "",
     gender: "",
     phone: "",
@@ -18,15 +21,15 @@ const Review = (props) => {
     problem: "",
     idea: "",
   });
-
+  
   useEffect(() => {
     const { steps } = props;
     const { name,email, gender, phone, problem ,idea } = steps;
-
-    setState({ name,email, gender, phone , problem, idea});
+    
+    setUserInput({ name,email, gender, phone , problem, idea});
   }, [props]);
 
-  const { name,email, gender, phone , problem , idea} = state;
+  const { name,email, gender, phone , problem , idea} = userInput;
 
   return (
     <div className="w-full">
@@ -70,7 +73,7 @@ Review.defaultProps = {
 
 const Chat = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+ 
   const handleToggleChat = () => {
     setIsOpen(!isOpen);
   };
@@ -317,6 +320,7 @@ const Chat = () => {
     userBubbleColor: "#fff",
     userFontColor: "#4a4a4a",
   };
+
 
   return (
     <>

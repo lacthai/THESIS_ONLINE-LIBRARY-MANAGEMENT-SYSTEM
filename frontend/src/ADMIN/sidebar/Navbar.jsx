@@ -32,7 +32,7 @@ const Navbar = () => {
           )}
         </IconButton>
         {/* <IconButton>
-          <Link to="/notifications">
+          <Link to="/admin/notifications">
           <NotificationsOutlinedIcon className="dark:text-[#383838] text-[#E0E0E0]"/>
           </Link>
         </IconButton> */}

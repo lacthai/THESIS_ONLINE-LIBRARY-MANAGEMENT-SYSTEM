@@ -122,7 +122,7 @@ const Sidebar = () => {
             sx={{ m: "15px 0 5px 20px" }}
             className="text-[0.8rem] text-[#909090] dark:text-[#484848]"
           >
-            Evaluation
+            Analysis
           </Typography>
           <Item
             title="Home"

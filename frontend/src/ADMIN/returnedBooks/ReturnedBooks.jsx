@@ -4,19 +4,18 @@ import axios from 'axios'
 import { backend_server } from '../../main'
 import { debounce } from 'lodash'
 
-
 const ReturnedBooks = () => {
   const NOT_RETURNED_API = `${backend_server}/api/v1/requestBooks/notreturnedbooks`
   const Update_Return_Status_API = `${backend_server}/api/v1/requestBooks`
 
   const [notReturnedBooks, setNotReturnedBooks] = useState([])
+  const [currentPage, setCurrentPage] = useState(1);
+  const [booksPerPage] = useState(5);
 
-  // Stored selected return Status from FORM
   const [bookReturnStatus, setBookReturnStatus] = useState()
   const [isAnyBooksPending, setIsAnyBooksPending] = useState(false)
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-
 
   const fetchNotReturnedBooks = async () => {
     try {
@@ -37,7 +36,6 @@ const ReturnedBooks = () => {
     fetchNotReturnedBooks()
   }, [])
 
-  // FORM
   const handleFormSubmit = (e) => {
     e.preventDefault()
   }
@@ -89,19 +87,26 @@ const ReturnedBooks = () => {
     setSearchQuery(event.target.value);
   };
 
+  // Pagination Logic
+  const indexOfLastBook = currentPage * booksPerPage;
+  const indexOfFirstBook = indexOfLastBook - booksPerPage;
+  const currentBooks = (searchQuery.trim() === '' ? notReturnedBooks : filteredBooks).slice(indexOfFirstBook, indexOfLastBook);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
-    <div className='container mt-2 h-[120vh] px-4'>
+    <div className='container mt-2 h-[130vh] px-4'>
       <h1 className='h1 text-center dark:text-[#303030] text-[#e0e0e0]'>Return Due Books</h1>
       {isAnyBooksPending ? (
         notReturnedBooks.length > 0 ? (
           <div className='row mt-3'>
-             <input
-            type="text"
-            className="form-control mb-4"
-            placeholder="Search by user name or email"
-            value={searchQuery}
-            onChange={handleSearchChange}
-          />
+            <input
+              type="text"
+              className="form-control mb-4"
+              placeholder="Search by user name or email"
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
             <table className='table table-hover border-[1px] border-[#bbbbbb]'>
               <thead>
                 <tr>
@@ -116,7 +121,7 @@ const ReturnedBooks = () => {
               </thead>
 
               <tbody>
-                {(searchQuery.trim() === '' ? notReturnedBooks : filteredBooks).map((book, index) => {
+                {currentBooks.map((book, index) => {
                   const {
                     _id,
                     userEmail,
@@ -163,6 +168,11 @@ const ReturnedBooks = () => {
                 })}
               </tbody>
             </table>
+            <Pagination
+              booksPerPage={booksPerPage}
+              totalBooks={(searchQuery.trim() === '' ? notReturnedBooks : filteredBooks).length}
+              paginate={paginate}
+            />
           </div>
         ) : (
           <p>Loading ...</p>
@@ -173,5 +183,27 @@ const ReturnedBooks = () => {
     </div>
   )
 }
+
+const Pagination = ({ booksPerPage, totalBooks, paginate }) => {
+  const pageNumbers = [];
+
+  for (let i = 1; i <= Math.ceil(totalBooks / booksPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  return (
+    <nav className="pagination justify-content-center">
+      <ul className="pagination">
+        {pageNumbers.map(number => (
+          <li key={number} className="page-item">
+            <a onClick={() => paginate(number)} className="page-link">
+              {number}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+};
 
 export default ReturnedBooks

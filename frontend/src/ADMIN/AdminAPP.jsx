@@ -20,6 +20,7 @@ import AdminSignup from "./createAdminAccount/AdminSignup";
 import AdminOtpForm from "./adminOTP/AdminOtpForm";
 import { PrivateRouteAdmin } from "./privateRoutesAdmin/privateRoutesAdmin";
 import AdminChartEvaluate from "./adminChart/adminChartEvaluate";
+import AdminNotify from "./adminNotify/adminNotify";
 
 
 const AdminAPP = () => {
@@ -88,6 +89,14 @@ const AdminAPP = () => {
             element={
               <PrivateRouteAdmin>
                 <BooksRequests />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            path="/admin/notifications"
+            element={
+              <PrivateRouteAdmin>
+                <AdminNotify />
               </PrivateRouteAdmin>
             }
           />

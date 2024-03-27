@@ -5,25 +5,20 @@ import { useState } from 'react'
 import { Toaster, toast } from 'react-hot-toast'
 import { debounce } from 'lodash';
 
-
-
 const BooksRequests = () => {
   const Pending_Book_API_Url = `${backend_server}/api/v1/requestBooks`
 
   const [pendingBooks, setPendingBooks] = useState([])
-
-  // Stored selected IssueStatus from FORM
   const [bookIssueStatus, setBookIssueStatus] = useState()
   const [isAnyBooksPending, setIsAnyBooksPending] = useState(true)
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(7);
 
   const fetchPendingBooks = async () => {
     try {
       const response = await axios.get(Pending_Book_API_Url)
-
-      // console.log(response)
-
       const totalHits = response.data.totalHits
       if (totalHits == 0) {
         setIsAnyBooksPending(false)
@@ -39,7 +34,6 @@ const BooksRequests = () => {
     fetchPendingBooks()
   }, [])
 
-  // FORM
   const handleFormSubmit = (e) => {
     e.preventDefault()
   }
@@ -62,7 +56,6 @@ const BooksRequests = () => {
     setBookIssueStatus(selectedIssueStatus)
   }
 
-
   useEffect(() => {
     const debouncedFilter = debounce(filterBooks, 300);
     debouncedFilter(searchQuery);
@@ -73,7 +66,7 @@ const BooksRequests = () => {
 
   const filterBooks = (query) => {
     if (query.trim() === '') {
-      setFilteredBooks(pendingBooks); // Show all books if no search query
+      setFilteredBooks(pendingBooks);
     } else {
       const filteredData = pendingBooks.filter(
         (book) =>
@@ -87,6 +80,13 @@ const BooksRequests = () => {
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
+
+  // Pagination
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = searchQuery ? filteredBooks.slice(indexOfFirstItem, indexOfLastItem) : pendingBooks.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = pageNumber => setCurrentPage(pageNumber);
 
   return (
     <div className='container mt-2 h-[120vh] px-8'>
@@ -114,7 +114,7 @@ const BooksRequests = () => {
               </thead>
 
               <tbody>
-                {(searchQuery ? filteredBooks : pendingBooks).map((book, index) => {
+                {currentItems.map((book, index) => {
                   const { _id, userEmail, bookTitle, issueStatus, username } =
                     book
 
@@ -130,7 +130,6 @@ const BooksRequests = () => {
                         <form className='d-flex' onSubmit={handleFormSubmit}>
                           <select
                             className='form-control mx-1'
-                            // defaultValue='PENDING'
                             defaultValue={issueStatus.toUpperCase()}
                             onChange={handleSelectChange}
                           >
@@ -160,6 +159,18 @@ const BooksRequests = () => {
                 })}
               </tbody>
             </table>
+            {/* Pagination */}
+            <nav>
+              <ul className="pagination justify-content-center">
+                {Array.from({ length: Math.ceil((searchQuery ? filteredBooks.length : pendingBooks.length) / itemsPerPage) }, (_, i) => (
+                  <li key={i} className="page-item">
+                    <button onClick={() => paginate(i + 1)} className="page-link">
+                      {i + 1}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
         ) : (
           <p>Loading ...</p>
